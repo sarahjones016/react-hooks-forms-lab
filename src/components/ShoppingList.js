@@ -16,10 +16,18 @@ function ShoppingList({ items, setItems }) {
   }
 
   const itemsToDisplay = items.filter((item) => {
-    if (selectedCategory === "All" && typedCategory === "") return true;
+    if (selectedCategory === "All") return true;
+    return item.category === selectedCategory
+  }).filter((item) => {
+    if (typedCategory === "") return true;
+    return item.name.toLowerCase().includes(typedCategory.toLowerCase())
+  })
 
-    return item.category === selectedCategory || item.name === typedCategory 
-  });
+  // const itemsToDisplay = items.filter((item) => {
+  //   if (selectedCategory === "All" && typedCategory === "") return true;
+  //   return item.category === selectedCategory || item.name.toLowerCase().includes(typedCategory.toLowerCase())
+    
+  // });
 
   function onItemFormSubmit(item) {
     console.log(item)
